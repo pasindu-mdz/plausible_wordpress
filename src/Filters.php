@@ -23,6 +23,7 @@ class Filters {
 	public function __construct() {
 		add_filter( 'script_loader_tag', [ $this, 'add_plausible_attributes' ], 10, 2 );
 		add_filter( 'plausible_analytics_script_params', [ $this, 'maybe_add_custom_params' ] );
+		add_filter( "post_row_actions", [ $this, 'add_link_to_analytics'], 10 , 2);
 	}
 
 	/**
@@ -102,5 +103,23 @@ class Filters {
 		}
 
 		return apply_filters( 'plausible_analytics_pageview_properties', $params );
+	}
+
+	/**
+	 * Add link to analytics page for a single post
+     * @param array $actions
+	 * @param WP_Post $post
+     * 
+	 * @return array
+	 */
+	public function add_link_to_analytics($actions, $post){
+		if($post->post_status != "publish") return $actions;
+
+	$url = wp_make_link_relative( get_permalink( $post->ID ) );
+	$url = admin_url("index.php?page=plausible_analytics_statistics&page-url=$url");
+
+	$actions["plausible-analytics"] = "<a href='$url'>Analytics</a>";
+
+	return $actions;
 	}
 }
