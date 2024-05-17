@@ -615,15 +615,15 @@ class Page extends API {
 		endif;
 
 		/**
+		 * @since v1.2.5
 		 * Prior to this version, the default value would contain an example "auth" key, i.e. XXXXXXXXX.
 		 * When this option was saved to the database, underlying code would fail, throwing a CORS related error in browsers.
 		 * Now, we explicitly check for the existence of this example "auth" key, and display a human-readable error message to
 		 * those who haven't properly set it up.
 		 *
-		 * @since v1.2.5
+		 * @since v2.0.3
 		 * For self-hosters the View Stats option doesn't need to be enabled, if a Shared Link is entered, we can assume they want to View Stats.
 		 * For regular users, the shared link is provisioned by the API, so it shouldn't be empty.
-		 * @since v2.0.3
 		 */
 		if ( ( ! $self_hosted && ! empty( $analytics_enabled ) && ! empty( $shared_link ) ) ||
 			( $self_hosted && ! empty( $shared_link ) ) ||
