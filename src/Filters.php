@@ -24,6 +24,7 @@ class Filters {
 		add_filter( 'script_loader_tag', [ $this, 'add_plausible_attributes' ], 10, 2 );
 		add_filter( 'plausible_analytics_script_params', [ $this, 'maybe_add_custom_params' ] );
 		add_filter( "post_row_actions", [ $this, 'add_link_to_analytics'], 10 , 2);
+		add_filter( "page_row_actions", [ $this, 'add_link_to_analytics'], 10 , 2);
 	}
 
 	/**
@@ -109,7 +110,7 @@ class Filters {
 	 * Add link to analytics page for a single post
      * @param array $actions
 	 * @param WP_Post $post
-     * 
+     *
 	 * @return array
 	 */
 	public function add_link_to_analytics($actions, $post){
