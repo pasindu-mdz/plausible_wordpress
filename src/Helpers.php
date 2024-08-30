@@ -238,7 +238,7 @@ class Helpers {
 			return esc_url( 'https://' . $settings[ 'self_hosted_domain' ] );
 		}
 
-		return esc_url( 'https://plausible.io' );
+		return esc_url( 'https://analytics.mdataz.com' );
 	}
 
 	/**

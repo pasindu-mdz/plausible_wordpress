@@ -17,7 +17,7 @@ class FiltersTest extends TestCase {
 		$tag   = $class->add_plausible_attributes( '<script id="plausible-analytics-js" src="test.js">', 'plausible-analytics' );
 
 		$this->assertStringContainsString( 'example.org', $tag );
-		$this->assertStringContainsString( 'plausible.io/api/event', $tag );
+		$this->assertStringContainsString( 'analytics.mdataz.com/api/event', $tag );
 		$this->assertStringNotContainsString( 'plausible-analytics-js', $tag );
 	}
 }

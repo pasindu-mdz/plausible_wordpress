@@ -133,7 +133,7 @@ class Proxy {
 		$params = $request->get_body();
 
 		$ip  = $this->get_user_ip_address();
-		$url = 'https://plausible.io/api/event';
+		$url = 'https://analytics.mdataz.com/api/event';
 		$ua  = ! empty ( $_SERVER[ 'HTTP_USER_AGENT' ] ) ? wp_kses( $_SERVER[ 'HTTP_USER_AGENT' ], 'strip' ) : '';
 
 		return wp_remote_post(
