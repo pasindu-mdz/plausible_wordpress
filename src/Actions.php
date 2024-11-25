@@ -71,10 +71,15 @@ class Actions {
 			$data = wp_json_encode(
 				[
 					'props' => [
-						'path' => 'documentation.location.pathname',
+						'path' => 'document.location.pathname',
 					],
 				]
 			);
+
+			/**
+			 * Documentation.location.pathname is a variable. @see wp_json_encode() doesn't allow passing variable, only strings. This fixes that.
+			 */
+			$data = str_replace( '"document.location.pathname"', 'document.location.pathname', $data );
 
 			wp_add_inline_script(
 				'plausible-analytics',
@@ -89,7 +94,8 @@ class Actions {
 			$data   = wp_json_encode(
 				[
 					'props' => [
-						'search_query' => get_search_query(),
+						// convert queries to lowercase and remove trailing whitespace to ensure same terms are grouped together
+						'search_query' => strtolower(trim(get_search_query())),
 						'result_count' => $wp_query->found_posts,
 					],
 				]
